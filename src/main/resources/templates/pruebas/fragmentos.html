@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}">
@@ -101,7 +102,7 @@
                             </div>
                         </div>
                     </form>
-                </div>
+                </div>   
                 <div class="col-md-3">
                     <form method="POST" th:action="@{/pruebas/query2}" 
                           class="was-validated">
@@ -134,16 +135,10 @@
                         <div class="card success">
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <label for="precioInf">[[#{pruebas.precio.inferior}]]</label>
-                                    <input type="number" class="form-control" 
-                                           th:value="${precioInf}"
-                                           th:name="precioInf" required="true"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="precioSup">[[#{pruebas.precio.superior}]]</label>
-                                    <input type="number" class="form-control" 
-                                           th:value="${precioSup}"
-                                           th:name="precioSup" required="true"/>
+                                    <label for="nombre">Filtrar por Nombre</label>
+                                    <input type="text" class="form-control" 
+                                           th:value="${nombre}"
+                                           th:name="nombre" required="true"/>
                                 </div>
                             </div>
                             <div class="card-footer text-center">
@@ -154,10 +149,7 @@
                         </div>
                     </form>
                 </div>
-
-
             </div>
-            
-        </section> 
+        </section>   
     </body>
 </html>

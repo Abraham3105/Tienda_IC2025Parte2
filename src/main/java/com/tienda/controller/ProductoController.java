@@ -16,37 +16,35 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/producto")
 public class ProductoController {
-    
+
     @Autowired
     private ProductoService productoService;
-    
+
     @Autowired
     private CategoriaService categoriaService;
-    
+
     @GetMapping("/listado")
     public String listado(Model model) {
-      var lista=productoService.getProductos(false);
-      var categorias =categoriaService.getCategorias(false);
-      model.addAttribute("productos", lista);
-      model.addAttribute("categorias", categorias);
-      model.addAttribute("totalProductos", lista.size());
-      return "/producto/listado";
+        var lista = productoService.getProductos(false);
+        var categorias = categoriaService.getCategorias(false);
+        model.addAttribute("productos", lista);
+        model.addAttribute("categorias", categorias);
+        model.addAttribute("totalProductos", lista.size());
+        return "/producto/listado";
     }
-    
-       
 
     @Autowired
     private FirebaseStorageServiceImpl firebaseStorageService;
-    
+
     @PostMapping("/guardar")
     public String productoGuardar(Producto producto,
-            @RequestParam("imagenFile") MultipartFile imagenFile) {        
+            @RequestParam("imagenFile") MultipartFile imagenFile) {
         if (!imagenFile.isEmpty()) {
             productoService.save(producto);
             producto.setRutaImagen(
                     firebaseStorageService.cargaImagen(
-                            imagenFile, 
-                            "producto", 
+                            imagenFile,
+                            "producto",
                             producto.getIdProducto()));
         }
         productoService.save(producto);
@@ -67,6 +65,4 @@ public class ProductoController {
         model.addAttribute("categorias", categorias);
         return "/producto/modifica";
     }
-    
-    
 }

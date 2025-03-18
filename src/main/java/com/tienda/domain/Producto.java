@@ -6,12 +6,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="producto")
-public class Producto implements Serializable{
-    
+@Table(name = "Producto")
+public class Producto implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
-   @Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto")
     private long idProducto;
@@ -33,13 +33,13 @@ public class Producto implements Serializable{
     public Producto() {
     }
 
-    public Producto(String descripcion, String detalle, double precio, int existencias, String imagen, boolean activo) {
+    public Producto(String descripcion, String detalle, double precio, int existencias, String imagen, boolean activo, Categoria categoria) {
         this.descripcion = descripcion;
         this.detalle = detalle;
         this.precio = precio;
         this.existencias = existencias;
         this.rutaImagen = imagen;
         this.activo = activo;
+        this.categoria = categoria;
     }
-    
 }
